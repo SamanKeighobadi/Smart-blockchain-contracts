@@ -27,7 +27,7 @@ contract HotelRoom {
         _;
     }
 
-    function room() public payable OnlyWhileVanact costs(2) {
+    receive() external payable OnlyWhileVanact costs(2 ether) {
         currentStatus = Status.Occupied;
         owner.transfer(msg.value);
         emit Occupy(msg.sender, msg.value);
