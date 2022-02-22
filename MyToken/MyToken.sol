@@ -22,4 +22,14 @@ contract MyToken {
         symbol = "SK";
         decimals = 18;
     }
+
+    modifier OnlyOwner() {
+        require(msg.sender == owner, "Only owner can access");
+        _;
+    }
+
+    function mint(address _reciver, uint256 _amount) public OnlyOwner {
+        balances[_reciver] += _amount;
+        totalSupply += _amount;
+    }
 }
