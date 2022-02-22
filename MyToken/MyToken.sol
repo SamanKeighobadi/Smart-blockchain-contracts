@@ -32,4 +32,11 @@ contract MyToken {
         balances[_reciver] += _amount;
         totalSupply += _amount;
     }
+
+    function transferToken(address _reciver, uint256 _amount) public {
+        require(balances[msg.sender] > _amount, "Not enough token");
+        balances[msg.sender] -= _amount;
+        balances[_reciver] += _amount;
+        emit Transfer(msg.sender, _reciver, _amount);
+    }
 }
