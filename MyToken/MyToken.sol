@@ -12,4 +12,14 @@ contract MyToken {
     mapping(address => uint256) public balances;
 
     event Transfer(address from, address to, uint256 amount);
+
+    constructor(uint256 _supply) public {
+        owner = msg.sender;
+        totalSupply = _supply;
+        balances[owner] = totalSupply;
+        priceToken = 10**12;
+        name = "SamToken";
+        symbol = "SK";
+        decimals = 18;
+    }
 }
